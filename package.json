@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jlorente/cordova-plugin-volume-control"
+    "url": "https://github.com/maintell/cordova-plugin-volume-control"
   },
   "keywords": [
     "cordova",
@@ -30,6 +30,6 @@
       "version": ">=3.0.0"
     }
   ],
-  "author": "José Lorente <jose.lorente.martin@gmail.com>",
+  "author": "maintell <maintell@gmail.com>",
   "license": "MIT"
 }
