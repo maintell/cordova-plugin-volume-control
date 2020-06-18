@@ -13,41 +13,32 @@
 
 @interface VolumeControl : CDVPlugin {
   // Member variables go here.
-    
-   
 }
 
-//- (void)toggleMute:(CDVInvokedUrlCommand*)command;
-//- (void)isMuted:(CDVInvokedUrlCommand*)command;
-- (void)setVolume:(CDVInvokedUrlCommand*)command;
+- (void)setSystemVolume:(CDVInvokedUrlCommand*)command;
+- (void)getSystemVolume:(CDVInvokedUrlCommand*)command;
 - (void)setMediaVolume:(CDVInvokedUrlCommand*)command;
-- (void)getVolume:(CDVInvokedUrlCommand*)command;
-/*
-- (void)getCategory:(CDVInvokedUrlCommand*)command;
-- (void)hideVolume:(CDVInvokedUrlCommand*)command;
-*/
+- (void)getMediaVolume:(CDVInvokedUrlCommand*)command;
+- (void)setPhoneRingVolume:(CDVInvokedUrlCommand*)command;
+- (void)getPhoneRingVolume:(CDVInvokedUrlCommand*)command;
+- (void)setAlarmVolume:(CDVInvokedUrlCommand*)command;
+- (void)getAlarmVolume:(CDVInvokedUrlCommand*)command;
+- (void)setNotificationVolume:(CDVInvokedUrlCommand*)command;
+- (void)getNotificationVolume:(CDVInvokedUrlCommand*)command;
+- (void)MutePhoneRing:(CDVInvokedUrlCommand*)command;
+- (void)UnMutePhoneRing:(CDVInvokedUrlCommand*)command;
+- (void)MuteSystem:(CDVInvokedUrlCommand*)command;
+- (void)UnMuteSystem:(CDVInvokedUrlCommand*)command;
+- (void)MuteMedia:(CDVInvokedUrlCommand*)command;
+- (void)UnMuteMedia:(CDVInvokedUrlCommand*)command;
+- (void)MuteAlarm:(CDVInvokedUrlCommand*)command;
+- (void)UnMuteAlarm:(CDVInvokedUrlCommand*)command;
+- (void)MuteNotification:(CDVInvokedUrlCommand*)command;
+- (void)UnMuteNotification:(CDVInvokedUrlCommand*)command;
+
 @end
 
-
-
 @implementation VolumeControl
-
-//- (id)systemController
-//{
-//    /*
-//     using AVSystemController private class.
-//     equivalent below
-//
-//     ```Objective-C
-//     AVSystemController* systemController = [AVSystemController sharedAVSystemController];
-//     return systemController;
-//     ```
-//     */
-//    Class class    = NSClassFromString([self decrypt:@"QVZTeXN0ZW1Db250cm9sbGVy"]);
-//    SEL   selector = NSSelectorFromString([self decrypt:@"c2hhcmVkQVZTeXN0ZW1Db250cm9sbGVy"]);
-//    id controller = [class performSelector:selector];
-//    return controller;
-//}
 
 - (NSString*)decrypt:(NSString*)encryptedBase64String
 {
@@ -56,64 +47,194 @@
 }
 
 
-- (void)toggleMute:(CDVInvokedUrlCommand*)command
-{
-   CDVPluginResult* pluginResult = nil;
-   DLog(@"toggleMute");
-
-//    Class avSystemControllerClass = NSClassFromString(@"AVSystemController");
-
-//    id avSystemControllerInstance = [avSystemControllerClass performSelector:@selector(sharedAVSystemController)];
-
-//    NSInvocation *privateInvocation = [NSInvocation invocationWithMethodSignature:
-//                                      [avSystemControllerClass instanceMethodSignatureForSelector:
-//                                       @selector(toggleActiveCategoryMuted)]];
-//    [privateInvocation setTarget:avSystemControllerInstance];
-//    [privateInvocation setSelector:@selector(toggleActiveCategoryMuted)];
-//    [privateInvocation invoke];
-
-//     NSString *soundCategory = @"Ringtone";
-//    float *soundVolumn= 0;
-//
-//     NSInvocation *volumeInvocation = [NSInvocation invocationWithMethodSignature:
-//                                          [avSystemControllerClass instanceMethodSignatureForSelector:
-//                                           @selector(setVolumeTo:forCategory:)]];
-//        [volumeInvocation setTarget:avSystemControllerInstance];
-//        [volumeInvocation setSelector:@selector(setVolumeTo:forCategory:)];
-//        [volumeInvocation setArgument:&soundVolumn atIndex:2];
-//        [volumeInvocation setArgument:&soundCategory atIndex:3];
-//        [volumeInvocation invoke];
-
-
-
-   BOOL result = true;
-   //[privateInvocation getReturnValue:&result];
-
-   pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
-   [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+- (void)setSystemVolume:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    BOOL result = false;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-- (void)isMuted:(CDVInvokedUrlCommand*)command
-{
-   CDVPluginResult* pluginResult = nil;
-   DLog(@"isMuted");
-
-//    Class avSystemControllerClass = NSClassFromString(@"AVSystemController");
-//    id avSystemControllerInstance = [avSystemControllerClass performSelector:@selector(sharedAVSystemController)];
-
-   BOOL result = false;
-//    NSInvocation *privateInvocation = [NSInvocation invocationWithMethodSignature:
-//                                      [avSystemControllerClass instanceMethodSignatureForSelector:
-//                                       @selector(getActiveCategoryMuted:)]];
-//    [privateInvocation setTarget:avSystemControllerInstance];
-//    [privateInvocation setSelector:@selector(getActiveCategoryMuted:)];
-//    [privateInvocation setArgument:&result atIndex:2];
-//    [privateInvocation invoke];
-
-   pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
-   [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+- (void)getSystemVolume:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    BOOL result = false;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
+- (void)setMediaVolume:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+      float volume = [[command argumentAtIndex:0] floatValue];
+
+      //DLog(@"setVolume: [%f]", volume);
+      NSString *soundCategory = ([self decrypt:(@"QXVkaW8vVmlkZW8=")]);
+      Class systemClass = NSClassFromString([self decrypt:(@"QVZTeXN0ZW1Db250cm9sbGVy")]);
+    
+      id target = [systemClass performSelector:NSSelectorFromString([self decrypt:@"c2hhcmVkQVZTeXN0ZW1Db250cm9sbGVy"]) withObject:soundCategory];
+
+      NSInvocation *volumeInvocation = [NSInvocation invocationWithMethodSignature:
+                                        [systemClass instanceMethodSignatureForSelector:
+                                        NSSelectorFromString([self decrypt:@"c2V0Vm9sdW1lVG86Zm9yQ2F0ZWdvcnk6"])]];
+      [volumeInvocation setTarget:target];
+      [volumeInvocation setSelector:NSSelectorFromString([self decrypt:@"c2V0Vm9sdW1lVG86Zm9yQ2F0ZWdvcnk6"])];
+      [volumeInvocation setArgument:&volume atIndex:2];
+      [volumeInvocation setArgument:&soundCategory atIndex:3];
+      [volumeInvocation invoke];
+      BOOL result;
+      [volumeInvocation getReturnValue:&result];
+
+      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+      [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+- (void)getMediaVolume:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    DLog(@"getVolume");
+
+    float systemVolume = [AVAudioSession sharedInstance].outputVolume;
+    
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    CGFloat currentVol = audioSession.outputVolume;
+
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDouble:audioSession.outputVolume];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+- (void)setPhoneRingVolume:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    float volume = [[command argumentAtIndex:0] floatValue];   
+    NSString *soundCategory = ([self decrypt:(@"UmluZ3RvbmU=")]);
+    Class systemClass = NSClassFromString([self decrypt:(@"QVZTeXN0ZW1Db250cm9sbGVy")]);  
+    id target = [systemClass performSelector:NSSelectorFromString([self decrypt:@"c2hhcmVkQVZTeXN0ZW1Db250cm9sbGVy"]) withObject:soundCategory];
+    NSInvocation *volumeInvocation = [NSInvocation invocationWithMethodSignature:
+                                      [systemClass instanceMethodSignatureForSelector:
+                                      NSSelectorFromString([self decrypt:@"c2V0Vm9sdW1lVG86Zm9yQ2F0ZWdvcnk6"])]];
+    [volumeInvocation setTarget:target];
+    [volumeInvocation setSelector:NSSelectorFromString([self decrypt:@"c2V0Vm9sdW1lVG86Zm9yQ2F0ZWdvcnk6"])];
+    [volumeInvocation setArgument:&volume atIndex:2];
+    [volumeInvocation setArgument:&soundCategory atIndex:3];
+    [volumeInvocation invoke];
+    BOOL result;
+    [volumeInvocation getReturnValue:&result];
+    
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+- (void)getPhoneRingVolume:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    BOOL result = false;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+- (void)setAlarmVolume:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    BOOL result = false;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];    
+}
+- (void)getAlarmVolume:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    BOOL result = false;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+- (void)setNotificationVolume:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    BOOL result = false;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+- (void)getNotificationVolume:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    BOOL result = false;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];    
+}
+- (void)MutePhoneRing:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    float volume = 0.0;   
+    NSString *soundCategory = ([self decrypt:(@"UmluZ3RvbmU=")]);
+    Class systemClass = NSClassFromString([self decrypt:(@"QVZTeXN0ZW1Db250cm9sbGVy")]);  
+    id target = [systemClass performSelector:NSSelectorFromString([self decrypt:@"c2hhcmVkQVZTeXN0ZW1Db250cm9sbGVy"]) withObject:soundCategory];
+    NSInvocation *volumeInvocation = [NSInvocation invocationWithMethodSignature:
+                                      [systemClass instanceMethodSignatureForSelector:
+                                      NSSelectorFromString([self decrypt:@"c2V0Vm9sdW1lVG86Zm9yQ2F0ZWdvcnk6"])]];
+    [volumeInvocation setTarget:target];
+    [volumeInvocation setSelector:NSSelectorFromString([self decrypt:@"c2V0Vm9sdW1lVG86Zm9yQ2F0ZWdvcnk6"])];
+    [volumeInvocation setArgument:&volume atIndex:2];
+    [volumeInvocation setArgument:&soundCategory atIndex:3];
+    [volumeInvocation invoke];
+    BOOL result;
+    [volumeInvocation getReturnValue:&result];
+    
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+- (void)UnMutePhoneRing:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    float volume = 1.0;   
+    NSString *soundCategory = ([self decrypt:(@"UmluZ3RvbmU=")]);
+    Class systemClass = NSClassFromString([self decrypt:(@"QVZTeXN0ZW1Db250cm9sbGVy")]);  
+    id target = [systemClass performSelector:NSSelectorFromString([self decrypt:@"c2hhcmVkQVZTeXN0ZW1Db250cm9sbGVy"]) withObject:soundCategory];
+    NSInvocation *volumeInvocation = [NSInvocation invocationWithMethodSignature:
+                                      [systemClass instanceMethodSignatureForSelector:
+                                      NSSelectorFromString([self decrypt:@"c2V0Vm9sdW1lVG86Zm9yQ2F0ZWdvcnk6"])]];
+    [volumeInvocation setTarget:target];
+    [volumeInvocation setSelector:NSSelectorFromString([self decrypt:@"c2V0Vm9sdW1lVG86Zm9yQ2F0ZWdvcnk6"])];
+    [volumeInvocation setArgument:&volume atIndex:2];
+    [volumeInvocation setArgument:&soundCategory atIndex:3];
+    [volumeInvocation invoke];
+    BOOL result;
+    [volumeInvocation getReturnValue:&result];
+    
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+- (void)MuteSystem:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    BOOL result = false;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+- (void)UnMuteSystem:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    BOOL result = false;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+- (void)MuteMedia:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    BOOL result = false;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+- (void)UnMuteMedia:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    BOOL result = false;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+- (void)MuteAlarm:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    BOOL result = false;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+- (void)UnMuteAlarm:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    BOOL result = false;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+- (void)MuteNotification:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    BOOL result = false;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+- (void)UnMuteNotification:(CDVInvokedUrlCommand*)command{
+    CDVPluginResult* pluginResult = nil;
+    BOOL result = false;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
 - (void)setVolume:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
@@ -139,8 +260,6 @@
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
-
-
 - (void)setMediaVolume:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
@@ -166,7 +285,6 @@
       pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
       [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
-
 - (void)getVolume:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
@@ -180,30 +298,5 @@
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDouble:audioSession.outputVolume];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
-
-/*
-- (void)getCategory:(CDVInvokedUrlCommand*)command
-{
-    CDVPluginResult* pluginResult = nil;
-    DLog(@"getCategory");
-
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:audioSession.category];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-}
-
-- (void)hideVolume:(CDVInvokedUrlCommand*)command
-{
-    CDVPluginResult* pluginResult = nil;
-    DLog(@"hideVolume");
-
-    MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame: CGRectZero];
-    volumeView.alpha = 0.01;
-    [self.webView.superview addSubview: volumeView];
-
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:YES];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-}*/
 
 @end
