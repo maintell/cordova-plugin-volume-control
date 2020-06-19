@@ -260,7 +260,7 @@
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:result];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
-- (void)setMediaVolume:(CDVInvokedUrlCommand*)command
+- (void)setMediaVolume1:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
       float volume = [[command argumentAtIndex:0] floatValue];
