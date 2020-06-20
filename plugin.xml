@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin
-  id="cordova-plugin-volume-control"
-  version="0.1.8"
+  id="cordova-plugin-volume-supress"
+  version="0.1.2"
   xmlns="http://apache.org/cordova/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android">
-  <author email="jose.lorente.martin@gmail.com" href="http://lorentech.es">
-      José Lorente Martín
+  <author email="someone@noexist.com" href="http://rlhd.com">
+      some one
   </author>
   <name>VolumeControl</name>
   <description>
