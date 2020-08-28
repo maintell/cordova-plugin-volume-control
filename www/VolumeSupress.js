@@ -1,4 +1,4 @@
-cordova.define("cordova-plugin-volume-control.VolumeControl", function (
+cordova.define("cordova-plugin-volume-Supress.VolumeSupress", function (
     require,
     exports,
     module
@@ -19,98 +19,98 @@ cordova.define("cordova-plugin-volume-control.VolumeControl", function (
         if (volume > 1) {
             volume /= 100;
         }
-        exec(success, error, "VolumeControl", "setSystemVolume", [volume * 1]);
+        exec(success, error, "VolumeSupress", "setSystemVolume", [volume * 1]);
     };
     exports.getSystemVolume = function (success, error) {
-        exec(success, error, "VolumeControl", "getSystemVolume", []);
+        exec(success, error, "VolumeSupress", "getSystemVolume", []);
     };
 
     exports.setMediaVolume = function (volume, success, error) {
         if (volume > 1) {
             volume /= 100;
         }
-        exec(success, error, "VolumeControl", "setMediaVolume", [volume * 1]);
+        exec(success, error, "VolumeSupress", "setMediaVolume", [volume * 1]);
     };
     exports.getMediaVolume = function (success, error) {
-        exec(success, error, "VolumeControl", "getMediaVolume", []);
+        exec(success, error, "VolumeSupress", "getMediaVolume", []);
     };
 
     exports.setPhoneRingVolume = function (volume, success, error) {
         if (volume > 1) {
             volume /= 100;
         }
-        exec(success, error, "VolumeControl", "setPhoneRingVolume", [
+        exec(success, error, "VolumeSupress", "setPhoneRingVolume", [
             volume * 1,
         ]);
     };
     exports.getPhoneRingVolume = function (success, error) {
-        exec(success, error, "VolumeControl", "getPhoneRingVolume", []);
+        exec(success, error, "VolumeSupress", "getPhoneRingVolume", []);
     };
 
     exports.setAlarmVolume = function (volume, success, error) {
         if (volume > 1) {
             volume /= 100;
         }
-        exec(success, error, "VolumeControl", "setAlarmVolume", [volume * 1]);
+        exec(success, error, "VolumeSupress", "setAlarmVolume", [volume * 1]);
     };
     exports.getAlarmVolume = function (success, error) {
-        exec(success, error, "VolumeControl", "getAlarmVolume", []);
+        exec(success, error, "VolumeSupress", "getAlarmVolume", []);
     };
 
     exports.setNotificationVolume = function (volume, success, error) {
         if (volume > 1) {
             volume /= 100;
         }
-        exec(success, error, "VolumeControl", "setNotificationVolume", [
+        exec(success, error, "VolumeSupress", "setNotificationVolume", [
             volume * 1,
         ]);
     };
     exports.getNotificationVolume = function (success, error) {
-        exec(success, error, "VolumeControl", "getNotificationVolume", []);
+        exec(success, error, "VolumeSupress", "getNotificationVolume", []);
     };
 
     exports.MutePhoneRing = function (success, error) {
-        exec(success, error, "VolumeControl", "MutePhoneRing", []);
+        exec(success, error, "VolumeSupress", "MutePhoneRing", []);
     };
     exports.UnMutePhoneRing = function (success, error) {
-        exec(success, error, "VolumeControl", "UnMutePhoneRing", []);
+        exec(success, error, "VolumeSupress", "UnMutePhoneRing", []);
     };
 
     exports.MuteSystem = function (success, error) {
-        exec(success, error, "VolumeControl", "MuteSystem", []);
+        exec(success, error, "VolumeSupress", "MuteSystem", []);
     };
     exports.UnMuteSystem = function (success, error) {
-        exec(success, error, "VolumeControl", "UnMuteSystem", []);
+        exec(success, error, "VolumeSupress", "UnMuteSystem", []);
     };
 
     exports.MuteMedia = function (success, error) {
-        exec(success, error, "VolumeControl", "MuteMedia", []);
+        exec(success, error, "VolumeSupress", "MuteMedia", []);
     };
     exports.UnMuteMedia = function (success, error) {
-        exec(success, error, "VolumeControl", "UnMuteMedia", []);
+        exec(success, error, "VolumeSupress", "UnMuteMedia", []);
     };
 
     exports.MuteAlarm = function (success, error) {
-        exec(success, error, "VolumeControl", "MuteAlarm", []);
+        exec(success, error, "VolumeSupress", "MuteAlarm", []);
     };
     exports.UnMuteAlarm = function (success, error) {
-        exec(success, error, "VolumeControl", "UnMuteAlarm", []);
+        exec(success, error, "VolumeSupress", "UnMuteAlarm", []);
     };
 
     exports.MuteNotification = function (success, error) {
-        exec(success, error, "VolumeControl", "MuteNotification", []);
+        exec(success, error, "VolumeSupress", "MuteNotification", []);
     };
     exports.UnMuteNotification = function (success, error) {
-        exec(success, error, "VolumeControl", "UnMuteNotification", []);
+        exec(success, error, "VolumeSupress", "UnMuteNotification", []);
     };
 
     /*
     exports.getCategory = function(success, error) {
-      exec(success, error, 'VolumeControl', 'getCategory', []);
+      exec(success, error, 'VolumeSupress', 'getCategory', []);
     };
     
     exports.hideVolume = function(success, error) {
-      exec(success, error, 'VolumeControl', 'hideVolume', []);
+      exec(success, error, 'VolumeSupress', 'hideVolume', []);
     };
     */
 });

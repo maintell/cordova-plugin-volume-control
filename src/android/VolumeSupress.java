@@ -1,4 +1,4 @@
-package com.lorentech.cordova.plugins.volumeControl;
+package com.eissoft.cordova.plugins.volumeSupress;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -9,7 +9,7 @@ import org.json.JSONException;
 import android.content.Context;
 import android.media.*;
 
-public class VolumeControl extends CordovaPlugin {
+public class VolumeSupress extends CordovaPlugin {
 
 
 
